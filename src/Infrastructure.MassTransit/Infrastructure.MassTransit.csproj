@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-NotificationsService-99f63f90-96f8-45c7-a421-21a5e45d903b</UserSecretsId>
+    <UserSecretsId>dotnet-Infrastructure.MassTransit-617eedfd-0796-4d7b-95e7-212cad69ddc9</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,5 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\InventoryService\InventoryService.csproj" />
+    <ProjectReference Include="..\NotificationsService\NotificationsService.csproj" />
+    <ProjectReference Include="..\OrdersService\OrdersService.csproj" />
   </ItemGroup>
 </Project>
