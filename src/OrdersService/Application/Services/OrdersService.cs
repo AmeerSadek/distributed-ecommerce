@@ -5,8 +5,10 @@ namespace OrdersService.Application.Services;
 
 public class OrdersService : IOrdersService
 {
-    public Task<CreateOrderOutputDto> CreateOrderAsync(CreateOrderInputDto createOrderDto)
+    public async Task<CreateOrderOutputDto> CreateOrderAsync(CreateOrderInputDto createOrderDto)
     {
-        throw new NotImplementedException();
+        await Task.Delay(10);
+
+        return new CreateOrderOutputDto("");
     }
 }
