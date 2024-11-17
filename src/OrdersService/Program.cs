@@ -1,6 +1,9 @@
 using Asp.Versioning;
 using OrdersService.Application.Contracts.Interfaces;
 using Common;
+using OrdersService.Validators;
+using FluentValidation.AspNetCore;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,9 @@ builder.Services.AddApiVersioning(options =>
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMassTransitMessaging(builder.Configuration, null);
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderRequestModelValidator>(ServiceLifetime.Transient);
 
 builder.Services.AddScoped<IOrdersService, OrdersService.Application.Services.OrdersService>();
 

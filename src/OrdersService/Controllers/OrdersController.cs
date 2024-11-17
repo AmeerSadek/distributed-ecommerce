@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OrdersService.Application.Contracts.Dtos;
 using OrdersService.Application.Contracts.Interfaces;
-using OrdersService.ViewModels.InputViewModels;
-using OrdersService.ViewModels.OutputViewModels;
+using OrdersService.RequestsResponsesModels.RequestModels;
+using OrdersService.RequestsResponsesModels.ResponseModels;
 
 namespace OrdersService.Controllers;
 
@@ -20,11 +20,12 @@ public class OrdersController : Controller
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(CreateOrderOutputViewModel), StatusCodes.Status202Accepted)]
-    public async Task<IActionResult> CreateOrderAsync(CreateOrderInputViewModel createOrderInputViewModel, CancellationToken cancellationToken)
+    [ProducesResponseType(typeof(CreateOrderResponseModel), StatusCodes.Status202Accepted)]
+    public async Task<IActionResult> CreateOrderAsync([FromBody] CreateOrderRequestModel createOrderInputViewModel, CancellationToken cancellationToken)
     {
         var createOrderOutputDto = await _ordersService.CreateOrderAsync(new CreateOrderInputDto
         {
+            OrderId = createOrderInputViewModel.OrderId,
             ProductId = createOrderInputViewModel.ProductId,
             Quantity = createOrderInputViewModel.Quantity
         });
