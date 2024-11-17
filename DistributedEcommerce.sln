@@ -11,11 +11,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{8B763287-B537-4C5A-816D-BD4A5DA42DED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersService", "src\OrdersService\OrdersService.csproj", "{3CAA7586-72DA-463F-B765-AA8589CFFB10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdersService", "src\OrdersService\OrdersService.csproj", "{3CAA7586-72DA-463F-B765-AA8589CFFB10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryService", "src\InventoryService\InventoryService.csproj", "{3B0F18F9-D26A-4EBA-A532-57F8B2997DE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryService", "src\InventoryService\InventoryService.csproj", "{3B0F18F9-D26A-4EBA-A532-57F8B2997DE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsService", "src\NotificationsService\NotificationsService.csproj", "{804CC94B-C918-4D75-830A-FA068693359D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationsService", "src\NotificationsService\NotificationsService.csproj", "{804CC94B-C918-4D75-830A-FA068693359D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{C2E99406-2CBC-446C-943C-D057AAFB162B}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "src\Common\Common.csproj", "{21FBF85C-4001-4528-8311-46AAFE6C7562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.MassTransit", "src\Infrastructure.MassTransit\Infrastructure.MassTransit.csproj", "{98887EF4-3AB7-435D-BCB7-EA6AF089860B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +44,14 @@ Global
 		{804CC94B-C918-4D75-830A-FA068693359D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{804CC94B-C918-4D75-830A-FA068693359D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{804CC94B-C918-4D75-830A-FA068693359D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FBF85C-4001-4528-8311-46AAFE6C7562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FBF85C-4001-4528-8311-46AAFE6C7562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FBF85C-4001-4528-8311-46AAFE6C7562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FBF85C-4001-4528-8311-46AAFE6C7562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98887EF4-3AB7-435D-BCB7-EA6AF089860B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98887EF4-3AB7-435D-BCB7-EA6AF089860B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98887EF4-3AB7-435D-BCB7-EA6AF089860B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98887EF4-3AB7-435D-BCB7-EA6AF089860B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +60,8 @@ Global
 		{3CAA7586-72DA-463F-B765-AA8589CFFB10} = {3E1AD5D3-734B-4D48-8DEE-12B5436715B0}
 		{3B0F18F9-D26A-4EBA-A532-57F8B2997DE7} = {FAEA382F-B5D0-4BC6-AA0E-530F342D637D}
 		{804CC94B-C918-4D75-830A-FA068693359D} = {8B763287-B537-4C5A-816D-BD4A5DA42DED}
+		{21FBF85C-4001-4528-8311-46AAFE6C7562} = {E4D0B433-A99A-4589-B621-5AEDBB4D6484}
+		{98887EF4-3AB7-435D-BCB7-EA6AF089860B} = {C2E99406-2CBC-446C-943C-D057AAFB162B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F221991-61BD-45EF-A37E-C027198569AA}
