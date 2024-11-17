@@ -1,9 +1,11 @@
 using Asp.Versioning;
 using OrdersService.Application.Contracts.Interfaces;
+using Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApiVersioning(options =>
 {
     options.ReportApiVersions = true;
@@ -14,8 +16,10 @@ builder.Services.AddApiVersioning(options =>
         new HeaderApiVersionReader("X-Version")
     );
 });
-builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMassTransitMessaging(builder.Configuration, null);
 
 builder.Services.AddScoped<IOrdersService, OrdersService.Application.Services.OrdersService>();
 

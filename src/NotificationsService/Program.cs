@@ -1,7 +1,8 @@
-using NotificationsService;
+using Common;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<Worker>();
+
+builder.Services.AddMassTransitMessaging(builder.Configuration, null);
 
 var host = builder.Build();
 host.Run();
