@@ -21,7 +21,7 @@ public class OrdersController : Controller
 
     [HttpPost]
     [ProducesResponseType(typeof(CreateOrderOutputViewModel), StatusCodes.Status202Accepted)]
-    public async Task<IActionResult> CreateOrderAsync(CreateOrderInputViewModel createOrderInputViewModel)
+    public async Task<IActionResult> CreateOrderAsync(CreateOrderInputViewModel createOrderInputViewModel, CancellationToken cancellationToken)
     {
         var createOrderOutputDto = await _ordersService.CreateOrderAsync(new CreateOrderInputDto
         {
