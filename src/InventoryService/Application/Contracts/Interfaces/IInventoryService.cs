@@ -4,5 +4,5 @@ namespace InventoryService.Application.Contracts.Interfaces;
 
 internal interface IInventoryService
 {
-    Task CheckAndReduceStockAsync(CheckAndReduceStockDto checkAndReduceStockDto);
+    Task CheckAndReduceStockAsync(CheckAndReduceStockDto checkAndReduceStockDto, CancellationToken cancellationToken);
 }

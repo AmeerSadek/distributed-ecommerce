@@ -14,10 +14,13 @@ public class OrdersService : IOrdersService
         _eventPublishingEndpoint = eventPublishingEndpoint;
     }
 
-    public async Task<CreateOrderOutputDto> CreateOrderAsync(CreateOrderInputDto createOrderDto)
+    public async Task<CreateOrderOutputDto> CreateOrderAsync(
+        CreateOrderInputDto createOrderDto,
+        CancellationToken cancellationToken)
     {
         await _eventPublishingEndpoint.Publish(
-            new OrderCreatedEvent(createOrderDto.OrderId, createOrderDto.ProductId, createOrderDto.Quantity));
+            new OrderCreatedEvent(createOrderDto.OrderId, createOrderDto.ProductId, createOrderDto.Quantity),
+            cancellationToken);
 
         return new CreateOrderOutputDto("Your order is being processed.");
     }
