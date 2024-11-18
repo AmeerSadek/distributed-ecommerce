@@ -9,7 +9,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddMassTransitMessaging(
         this IServiceCollection services,
         IConfiguration configuration,
-        List<(Type consumer, Type ConsumerDefinition)> consumers)
+        List<(Type consumer, Type ConsumerDefinition)>? consumers)
     {
         ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
 
