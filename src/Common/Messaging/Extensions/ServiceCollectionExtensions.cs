@@ -1,8 +1,9 @@
-﻿using MassTransit;
+﻿using Common.Messaging.Configuration;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Common;
+namespace Common.Messaging.Extensions;
 
 public static class ServiceCollectionExtensions
 {
@@ -11,7 +12,17 @@ public static class ServiceCollectionExtensions
         IConfiguration configuration,
         List<(Type consumer, Type ConsumerDefinition)>? consumers)
     {
-        ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
+        ArgumentNullException.ThrowIfNull(configuration);
+
+        var brokerSettings = configuration
+            .GetSection(MessageBrokerSettings.SectionName)
+            .Get<MessageBrokerSettings>()
+            ?? throw new InvalidOperationException("Message broker settings are not configured.");
+
+        if (brokerSettings.Username is null || brokerSettings.Host is null || brokerSettings.Password is null)
+        {
+            throw new InvalidOperationException("Message broker settings are not configured.");
+        }
 
         return services.AddMassTransit(busConfigurator =>
         {
@@ -27,10 +38,10 @@ public static class ServiceCollectionExtensions
 
             busConfigurator.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host(new Uri(configuration["MessageBrokerSettings:Host"]), h =>
+                configurator.Host(new Uri(brokerSettings.Host), h =>
                 {
-                    h.Username(configuration["MessageBrokerSettings:Username"]);
-                    h.Password(configuration["MessageBrokerSettings:Password"]);
+                    h.Username(brokerSettings.Username);
+                    h.Password(brokerSettings.Password);
                 });
 
                 configurator.ConfigureEndpoints(context);
