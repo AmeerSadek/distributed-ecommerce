@@ -16,12 +16,8 @@ public class OrdersService : IOrdersService
 
     public async Task<CreateOrderOutputDto> CreateOrderAsync(CreateOrderInputDto createOrderDto)
     {
-        await _eventPublishingEndpoint.Publish(new OrderCreatedEvent
-        {
-            OrderId = createOrderDto.OrderId,
-            ProductId = createOrderDto.ProductId,
-            Quantity = createOrderDto.Quantity
-        });
+        await _eventPublishingEndpoint.Publish(
+            new OrderCreatedEvent(createOrderDto.OrderId, createOrderDto.ProductId, createOrderDto.Quantity));
 
         return new CreateOrderOutputDto("Your order is being processed.");
     }

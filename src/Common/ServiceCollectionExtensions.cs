@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
 
             busConfigurator.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host(new Uri(configuration["MessageBrokerSettings:Host"]!), h =>
+                configurator.Host(new Uri(configuration["MessageBrokerSettings:Host"]), h =>
                 {
                     h.Username(configuration["MessageBrokerSettings:Username"]);
                     h.Password(configuration["MessageBrokerSettings:Password"]);
