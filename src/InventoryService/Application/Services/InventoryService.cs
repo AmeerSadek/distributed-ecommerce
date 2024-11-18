@@ -19,7 +19,9 @@ internal class InventoryService : IInventoryService
         _eventPublishingEndpoint = eventPublishingEndpoint;
     }
 
-    public async Task CheckAndReduceStockAsync(CheckAndReduceStockDto checkAndReduceStockDto)
+    public async Task CheckAndReduceStockAsync(
+        CheckAndReduceStockDto checkAndReduceStockDto,
+        CancellationToken cancellationToken)
     {
         var isReductionSuccess = await _productsRepository.ReduceStockAsync(
             checkAndReduceStockDto.ProductId,
@@ -28,12 +30,14 @@ internal class InventoryService : IInventoryService
         if (isReductionSuccess)
         {
             await _eventPublishingEndpoint.Publish(
-                new InventoryUpdatedEvent(checkAndReduceStockDto.OrderId, checkAndReduceStockDto.ProductId, checkAndReduceStockDto.Quantity));
+                new InventoryUpdatedEvent(checkAndReduceStockDto.OrderId, checkAndReduceStockDto.ProductId, checkAndReduceStockDto.Quantity),
+                cancellationToken);
         }
         else
         {
             await _eventPublishingEndpoint.Publish(
-                new OutOfStockEvent(checkAndReduceStockDto.OrderId, checkAndReduceStockDto.ProductId, checkAndReduceStockDto.Quantity));
+                new OutOfStockEvent(checkAndReduceStockDto.OrderId, checkAndReduceStockDto.ProductId, checkAndReduceStockDto.Quantity),
+                cancellationToken);
         }
     }
 }
