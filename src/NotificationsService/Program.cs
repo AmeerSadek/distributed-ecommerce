@@ -1,4 +1,4 @@
-using Common;
+using Common.Messaging.Extensions;
 using NotificationsService.Application.Messaging.ConsumerDefinitions;
 using NotificationsService.Application.Messaging.Consumers;
 

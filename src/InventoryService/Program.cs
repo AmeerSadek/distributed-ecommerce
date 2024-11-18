@@ -1,4 +1,4 @@
-using Common;
+using Common.Messaging.Extensions;
 using InventoryService.Application.Contracts.Interfaces;
 using InventoryService.Application.Messaging.Consumers;
 using InventoryService.Application.Messaging.ConsumersDefinitions;

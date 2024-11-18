@@ -1,9 +1,9 @@
 using Asp.Versioning;
 using OrdersService.Application.Contracts.Interfaces;
-using Common;
 using OrdersService.Validators;
 using FluentValidation.AspNetCore;
 using FluentValidation;
+using Common.Messaging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
