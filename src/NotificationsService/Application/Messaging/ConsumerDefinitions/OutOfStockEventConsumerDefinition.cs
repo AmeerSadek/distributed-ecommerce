@@ -9,4 +9,15 @@ internal class OutOfStockEventConsumerDefinition : ConsumerDefinition<OutOfStock
     {
         EndpointName = "out-of-stock";
     }
+
+    protected override void ConfigureConsumer(
+        IReceiveEndpointConfigurator endpointConfigurator, 
+        IConsumerConfigurator<OutOfStockEventConsumer> consumerConfigurator, 
+        IRegistrationContext context)
+    {
+        consumerConfigurator.UseMessageRetry(x =>
+        {
+            x.Interval(3, 1000);
+        });
+    }
 }
