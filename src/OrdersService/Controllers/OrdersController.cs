@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using OrdersService.Application.Contracts.Dtos;
 using OrdersService.Application.Contracts.Interfaces;
 using OrdersService.RequestsResponsesModels.RequestModels;
@@ -21,16 +22,17 @@ public class OrdersController : Controller
 
     [HttpPost]
     [ProducesResponseType(typeof(CreateOrderResponseModel), StatusCodes.Status202Accepted)]
+    [Consumes(typeof(CreateOrderRequestModel), "application/json")]
+    [Produces(typeof(CreateOrderResponseModel))]
     public async Task<IActionResult> CreateOrderAsync([FromBody] CreateOrderRequestModel createOrderInputViewModel, CancellationToken cancellationToken)
     {
-        var createOrderOutputDto = await _ordersService.CreateOrderAsync(new CreateOrderInputDto
-        {
-            OrderId = createOrderInputViewModel.OrderId,
-            ProductId = createOrderInputViewModel.ProductId,
-            Quantity = createOrderInputViewModel.Quantity
-        },
-        cancellationToken);
+        var createOrderResultDto = await _ordersService.CreateOrderAsync(
+            new CreateOrderDto(
+                createOrderInputViewModel.OrderId, 
+                createOrderInputViewModel.ProductId, 
+                createOrderInputViewModel.Quantity),
+            cancellationToken); ;
 
-        return Accepted(createOrderOutputDto);
+        return Accepted(new CreateOrderResponseModel(createOrderResultDto.Message));
     }
 }
