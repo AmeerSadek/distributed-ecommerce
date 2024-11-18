@@ -21,6 +21,7 @@ internal class OrderCreatedEventConsumer : IConsumer<OrderCreatedEvent>
             OrderId = context.Message.OrderId,
             ProductId = context.Message.ProductId,
             Quantity = context.Message.Quantity
-        });
+        },
+        context.CancellationToken);
     }
 }

@@ -28,7 +28,8 @@ public class OrdersController : Controller
             OrderId = createOrderInputViewModel.OrderId,
             ProductId = createOrderInputViewModel.ProductId,
             Quantity = createOrderInputViewModel.Quantity
-        });
+        },
+        cancellationToken);
 
         return Accepted(createOrderOutputDto);
     }
