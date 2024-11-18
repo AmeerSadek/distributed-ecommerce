@@ -1,5 +1,6 @@
 ﻿using Common.Messaging.Contracts.Events;
-using InventoryService.Application.Contracts;
+using InventoryService.Application.Contracts.Dtos;
+using InventoryService.Application.Contracts.Interfaces;
 using MassTransit;
 
 namespace InventoryService.Application.Messaging.Consumers;
@@ -15,6 +16,11 @@ internal class OrderCreatedEventConsumer : IConsumer<OrderCreatedEvent>
 
     public async Task Consume(ConsumeContext<OrderCreatedEvent> context)
     {
-        await _inventoryService.CheckAndReduceStockAsync(context.Message.ProductId, context.Message.Quantity);
+        await _inventoryService.CheckAndReduceStockAsync(new CheckAndReduceStockDto
+        {
+            OrderId = context.Message.OrderId,
+            ProductId = context.Message.ProductId,
+            Quantity = context.Message.Quantity
+        });
     }
 }
