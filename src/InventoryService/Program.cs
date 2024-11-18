@@ -1,5 +1,5 @@
 using Common;
-using InventoryService.Application.Contracts;
+using InventoryService.Application.Contracts.Interfaces;
 using InventoryService.Application.Messaging.Consumers;
 using InventoryService.Application.Messaging.ConsumersDefinitions;
 using InventoryService.DataAccess.Repository;
