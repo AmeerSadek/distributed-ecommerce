@@ -20,7 +20,15 @@ builder.Services.AddApiVersioning(options =>
     );
 });
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Orders API",
+        Description = "A sample API for making orders."
+    });
+});
 
 builder.Services.AddMassTransitMessaging(builder.Configuration, null);
 

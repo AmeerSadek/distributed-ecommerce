@@ -44,5 +44,7 @@ internal class OrderCreatedEventConsumer : IConsumer<OrderCreatedEvent>
             Quantity = context.Message.Quantity
         },
         context.CancellationToken);
+
+        _logger.LogInformation("OrderCreated event consumed");
     }
 }

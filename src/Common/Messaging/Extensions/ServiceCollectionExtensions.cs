@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
             .Get<MessageBrokerSettings>()
             ?? throw new InvalidOperationException("Message broker settings are not configured.");
 
-        if (brokerSettings.Username is null || brokerSettings.Host is null || brokerSettings.Password is null)
+        if (brokerSettings.Host is null || brokerSettings.Username is null || brokerSettings.Password is null)
         {
             throw new InvalidOperationException("Message broker settings are not configured.");
         }
