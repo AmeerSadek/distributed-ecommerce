@@ -1,6 +1,5 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using OrdersService.Application.Contracts.Dtos;
 using OrdersService.Application.Contracts.Interfaces;
 using OrdersService.RequestsResponsesModels.RequestModels;

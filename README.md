@@ -71,7 +71,7 @@ A `docker-compose.yml` file is included to set up RabbitMQ. To start RabbitMQ, f
      - Implementing error handling mechanisms.
 
 3. **Fault Tolerance**
-   - Retries are implemented for handling message processing failures, ensuring reliable delivery.
+   - Retries and In-Memory Outbox are implemented for handling message processing failures, ensuring reliable delivery, and message consistency.
   
 ---
 
@@ -80,7 +80,7 @@ A `docker-compose.yml` file is included to set up RabbitMQ. To start RabbitMQ, f
 Follow these steps to test the system and verify its functionality:
 
 1. **Submit an Order**
-   - Use a REST client like Postman, cURL, or any other tool to send a request to the Orders Service.
+   - Use a REST client like Postman, cURL, or any other tool to send a request to the Orders Service (Swagger UI can be used as well).
    - Provide the necessary order details, including `Order ID`, `Product ID`, and `Quantity`.
 
 2. **Verify Inventory Service Behavior**
@@ -93,9 +93,6 @@ Follow these steps to test the system and verify its functionality:
    - Review the logs of the Notifications Service to verify that it correctly processes the events:
      - For an `InventoryUpdated` event, it should log a success notification.
      - For an `OutOfStock` event, it should log a notification indicating the order is waiting due to low stock.
-
-4. **End-to-End Verification**
-   - Confirm that the entire workflow (from order creation to notifications) functions as expected without errors.
 
 ---
 
